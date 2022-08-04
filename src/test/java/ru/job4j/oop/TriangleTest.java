@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 
 public class TriangleTest {
+
     @Test
     public void when00and40and04Then8() {
         Point a = new Point(0, 0);
