@@ -38,4 +38,13 @@ public class Item {
     public LocalDateTime getCreated() {
         return this.created;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", created=" + created +
+                '}';
+    }
 }
