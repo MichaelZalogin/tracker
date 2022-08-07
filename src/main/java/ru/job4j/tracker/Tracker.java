@@ -53,14 +53,18 @@ public class Tracker {
         return rsl;
     }
 
-    public boolean replace(int id, Item anotherTack) {
+    public boolean replace(int id, Item tack) {
         int index = indexOf(id);
         if (index != -1) {
-            anotherTack.setId(id);
-            anotherTack.setName(anotherTack.getName());
-            items[index] = anotherTack;
+            tack.setId(id);
+            items[index] = tack;
             return true;
         }
         return false;
+    }
+
+    public boolean delete(int id) {
+        items[indexOf(id)] = null;
+        return true;
     }
 }
