@@ -14,7 +14,7 @@ public class Tracker {
     }
 
     public List<Item> findAll() {
-        return items;
+        return List.copyOf(items);
     }
 
     public Item findById(int id) {
@@ -24,9 +24,9 @@ public class Tracker {
 
     public List<Item> findByName(String key) {
         List<Item> copyItem = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++) {
-            if (key.equals(items.get(i).getName())) {
-                copyItem.add(items.get(i));
+        for (Item item: items) {
+            if (key.equals(item.getName())) {
+                copyItem.add(item);
             }
         }
         return copyItem;
