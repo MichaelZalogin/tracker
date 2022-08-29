@@ -24,7 +24,7 @@ public class Tracker {
 
     public List<Item> findByName(String key) {
         List<Item> copyItem = new ArrayList<>();
-        for (Item item: items) {
+        for (Item item : items) {
             if (key.equals(item.getName())) {
                 copyItem.add(item);
             }
