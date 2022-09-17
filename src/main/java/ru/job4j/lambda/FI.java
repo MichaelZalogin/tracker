@@ -25,11 +25,7 @@ public class FI {
             System.out.println(attachment);
         }
 
-        Comparator<Attachment> compareByNameDesc = (left, right) ->
-                right.getName().compareTo(left.getName());
-        Arrays.sort(atts, compareByNameDesc);
-        for (Attachment attachment : atts) {
-            System.out.println(attachment);
-        }
+        Comparator<String> compareByLengthNameDesc = (left, right) ->
+                Integer.compare(right.length(), left.length());
     }
 }
