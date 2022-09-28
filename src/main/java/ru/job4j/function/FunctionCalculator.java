@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.function.Function;
 
 public class FunctionCalculator {
-    public List<Double> diapason(double start, double end, Function<Double, Double> func) {
+    public List<Double> diapason(int start, int end, Function<Double, Double> func) {
         List<Double> list = new ArrayList<>();
-        list.add(start);
-        Double apply = func.apply(() -> end);
+        for (int i = start; i < end; i++) {
+            list.add(func.apply((double) i));
+        }
         return list;
     }
 }
