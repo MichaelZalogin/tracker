@@ -27,7 +27,7 @@ public class FunctionCalculatorTest {
     @Test
     public void whenExponentialFunctionThenExponentialResults() {
         FunctionCalculator function = new FunctionCalculator();
-        List<Double> result = function.diapason(5, 8, x -> Math.pow(x, x) + 12);
+        List<Double> result = function.diapason(5, 8, x -> Math.pow(2, x) + 12);
         List<Double> expected = Arrays.asList(3137D, 46668D, 823555D);
         assertThat(result).containsAll(expected);
     }
