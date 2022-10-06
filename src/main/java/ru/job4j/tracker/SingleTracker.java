@@ -10,37 +10,20 @@ public class SingleTracker {
 
     public SingleTracker getSingleTracker() {
         if (instance == null) {
-            return new SingleTracker();
-        } else {
-            return instance;
+            instance = new SingleTracker();
         }
+        return instance;
     }
 
     public Item add(Item item) {
-        return null;
+        return tracker.add(item);
     }
 
     public Item findById(int id) {
-        return null;
-    }
-
-    public Item[] findAll() {
-        return null;
-    }
-
-    public Item[] findByName(String key) {
-        return null;
-    }
-
-    private int indexOf(int id) {
-        return 0;
-    }
-
-    public boolean replace(int id, Item tack) {
-        return false;
+        return tracker.findById(id);
     }
 
     public boolean delete(int id) {
-        return false;
+        return tracker.delete(id);
     }
 }
