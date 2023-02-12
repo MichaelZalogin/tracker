@@ -1,4 +1,4 @@
-# job4j_tracker
+# tracker
 
 ## О проекте
 
