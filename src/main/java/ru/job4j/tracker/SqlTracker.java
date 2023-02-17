@@ -103,6 +103,7 @@ public class SqlTracker implements Store {
                 SELECT id,name,created 
                 FROM items;
                 """)) {
+            statement.executeQuery();
             var resultSet = statement.getResultSet();
             while (resultSet.next()) {
                 items.add(new Item(
