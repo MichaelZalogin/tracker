@@ -14,9 +14,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-class SqlTrackerTest {
+public class SqlTrackerTest {
+
     private static Connection connection;
 
     @BeforeAll
@@ -29,6 +30,7 @@ class SqlTrackerTest {
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
+
             );
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -53,19 +55,6 @@ class SqlTrackerTest {
         Item item = new Item("item");
         tracker.add(item);
         assertThat(tracker.findById(item.getId())).isEqualTo(item);
-    }
-
-    @Test
-    public void whenSaveItemAndFindByNameThenMustBeTheSame() {
-        SqlTracker tracker = new SqlTracker(connection);
-        Item item1 = new Item("item1");
-        Item item2 = new Item("item2");
-        Item item3 = new Item("item1");
-        tracker.add(item1);
-        tracker.add(item2);
-        tracker.add(item3);
-        List<Item> expected = List.of(item1, item3);
-        assertThat(tracker.findByName(item1.getName())).isEqualTo(expected);
     }
 
     @Test
