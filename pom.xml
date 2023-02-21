@@ -20,15 +20,15 @@
             <properties>
                 <liquibase.config>db/liquibase_test.properties</liquibase.config>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>production</id>
             <properties>
                 <liquibase.config>db/liquibase.properties</liquibase.config>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
 
@@ -87,26 +87,7 @@
             <version>2.1.214</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>test</id>
-            <properties>
-                <liquibase.config>db/liquibase_test.properties</liquibase.config>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>production</id>
-            <properties>
-                <liquibase.config>db/liquibase.properties</liquibase.config>
-            </properties>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
