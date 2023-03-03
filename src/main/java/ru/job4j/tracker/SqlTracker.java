@@ -106,11 +106,7 @@ public class SqlTracker implements Store {
             statement.executeQuery();
             var resultSet = statement.getResultSet();
             while (resultSet.next()) {
-                items.add(new Item(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getTimestamp("created").toLocalDateTime()
-                ));
+                items.add(buildItem(resultSet));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -130,11 +126,7 @@ public class SqlTracker implements Store {
             statement.setString(1, key);
             var resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                items.add(new Item(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getTimestamp("created").toLocalDateTime()
-                ));
+                items.add(buildItem(resultSet));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,13 +146,17 @@ public class SqlTracker implements Store {
             statement.setInt(1, id);
             var resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                item = new Item(resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getTimestamp("created").toLocalDateTime());
+                item = buildItem(resultSet);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return item;
+    }
+
+    private Item buildItem(ResultSet resultSet) throws SQLException {
+        return new Item(resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime());
     }
 }
