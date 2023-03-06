@@ -1,11 +1,8 @@
 package ru.job4j.tracker;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class SqlTracker implements Store {
 
