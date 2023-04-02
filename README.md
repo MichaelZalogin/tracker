@@ -35,12 +35,15 @@
 ## Интерфейс
 
 * Интерфейс меню
+
   ![Screenshot](screenshots/interface.png)
 
 * Вывод всех задач
+
   ![Screenshot](screenshots/showAll.png)
 
 * Редактирование задачи
+
   ![Screenshot](screenshots/edit.png)
 
 ## Автор
