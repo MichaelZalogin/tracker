@@ -1,5 +1,6 @@
 package ru.mch.tracker.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -10,8 +11,12 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
+@Entity
+@Table(name = "items")
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
