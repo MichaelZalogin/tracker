@@ -1,4 +1,4 @@
-package ru.mch.tracker;
+package ru.mch.tracker.store;
 
 import ru.mch.tracker.entity.Item;
 

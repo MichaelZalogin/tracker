@@ -2,7 +2,7 @@ package ru.mch.tracker.actions;
 
 import ru.mch.tracker.Input;
 import ru.mch.tracker.Output;
-import ru.mch.tracker.Store;
+import ru.mch.tracker.store.Store;
 
 public class DeleteAction implements UserAction {
 

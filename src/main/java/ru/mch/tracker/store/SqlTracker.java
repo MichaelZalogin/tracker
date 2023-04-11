@@ -1,7 +1,6 @@
-package ru.mch.tracker;
+package ru.mch.tracker.store;
 
 import ru.mch.tracker.entity.Item;
-
 import java.io.*;
 import java.sql.*;
 import java.util.*;

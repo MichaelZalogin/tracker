@@ -1,6 +1,7 @@
 package ru.mch.tracker;
 
 import ru.mch.tracker.actions.UserAction;
+import ru.mch.tracker.store.Store;
 
 public class Exit implements UserAction {
 
