@@ -41,11 +41,11 @@ public class HbmTracker implements Store, AutoCloseable {
             session.beginTransaction();
             var query = session.createQuery("""
                             UPDATE Item
-                            SET name = :fname
+                            SET name = :fName
                             WHERE id = :fId
                                     """)
-                    .setParameter("name", item.getName())
-                    .setParameter("id", id);
+                    .setParameter("fName", item.getName())
+                    .setParameter("fId", id);
             result = query.executeUpdate() > 0;
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class HbmTracker implements Store, AutoCloseable {
                             DELETE Item
                             WHERE id = :fId
                                     """)
-                    .setParameter("id", id);
+                    .setParameter("fId", id);
             result = query.executeUpdate() > 0;
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -102,9 +102,9 @@ public class HbmTracker implements Store, AutoCloseable {
             session.beginTransaction();
             Query<Item> query = session.createQuery("""
                             FROM Item
-                            WHERE name LIKE :fkey
+                            WHERE name LIKE :fKey
                             """)
-                    .setParameter("key", "%" + key + "%");
+                    .setParameter("fKey", "%" + key + "%");
             itemList = query.list();
             session.getTransaction().commit();
         } catch (Exception e) {
