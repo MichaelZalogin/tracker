@@ -1,4 +1,4 @@
-package ru.mch.tracker;
+package ru.mch.tracker.run;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
