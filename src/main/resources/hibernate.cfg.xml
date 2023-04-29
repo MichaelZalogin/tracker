@@ -17,5 +17,6 @@
         <mapping class="ru.mch.tracker.entity.Item"/>
         <mapping class="ru.mch.tracker.entity.Role"/>
         <mapping class="ru.mch.tracker.entity.User"/>
+        <mapping class="ru.mch.tracker.entity.UserMessenger"/>
     </session-factory>
 </hibernate-configuration>
