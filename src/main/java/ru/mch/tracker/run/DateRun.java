@@ -3,9 +3,7 @@ package ru.mch.tracker.run;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.mch.tracker.entity.Item;
-
 import java.time.LocalDateTime;
-import java.util.TimeZone;
 
 public class DateRun {
     public static void main(String[] args) {
@@ -13,13 +11,10 @@ public class DateRun {
                 .configure().build();
         try (var sf = new MetadataSources(registry)
                 .buildMetadata().buildSessionFactory()) {
-            var session = sf
-                    .withOptions()
-                    .jdbcTimeZone(TimeZone.getTimeZone("UTC"))
-                    .openSession();
+            var session = sf.openSession();
             session.beginTransaction();
             var item = new Item();
-            item.setName("check timezone");
+            item.setName("check timezone3");
             item.setCreated(LocalDateTime.now());
             session.persist(item);
             session.getTransaction().commit();
