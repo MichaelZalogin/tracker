@@ -1,11 +1,43 @@
 package ru.mch.tracker.store;
 
-import org.junit.Test;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.junit.jupiter.api.*;
 import ru.mch.tracker.entity.Item;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import java.sql.SQLException;
+import static org.assertj.core.api.Assertions.*;
 
 public class HbmTrackerTest {
+
+    private static SessionFactory sf;
+
+    @BeforeAll
+    public static void initSessionFactory() {
+        sf = new MetadataSources(new StandardServiceRegistryBuilder()
+                .configure().build())
+                .buildMetadata().buildSessionFactory();
+    }
+
+    @AfterEach
+    public void wipeTable() throws SQLException {
+        var session = sf.openSession();
+        try {
+            session.beginTransaction();
+            var query = session.createQuery("DELETE Item");
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+    @AfterAll
+    public static void closeSessionFactory() throws SQLException {
+        sf.close();
+    }
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() throws Exception {
@@ -14,8 +46,7 @@ public class HbmTrackerTest {
             item.setName("test1");
             tracker.add(item);
             Item result = tracker.findById(item.getId());
-            assertThat(result.getName(), is(item.getName()));
+            assertThat(result.getName()).isEqualTo(item.getName());
         }
     }
-
 }
