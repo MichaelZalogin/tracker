@@ -6,7 +6,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.*;
 import ru.mch.tracker.entity.Item;
 import java.sql.SQLException;
-import static org.assertj.core.api.Assertions.*;
+import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class HbmTrackerTest {
 
@@ -40,7 +41,7 @@ public class HbmTrackerTest {
     }
 
     @Test
-    public void whenAddNewItemThenTrackerHasSameItem() throws Exception {
+    public void whenAddNewItem() {
         try (var tracker = new HbmTracker()) {
             Item item = new Item();
             item.setName("test1");
@@ -49,4 +50,57 @@ public class HbmTrackerTest {
             assertThat(result.getName()).isEqualTo(item.getName());
         }
     }
+
+    @Test
+    public void whenDeleteItem() {
+        try (var tracker = new HbmTracker()) {
+            Item item1 = new Item("item1");
+            tracker.add(item1);
+            assertThat(tracker.delete(item1.getId())).isTrue();
+            assertThat(tracker.delete(item1.getId())).isFalse();
+            assertThat(tracker.findById(item1.getId())).isNull();
+        }
+    }
+
+    @Test
+    public void whenSaveItemAndFindAll() {
+        try (var tracker = new HbmTracker()) {
+            Item item1 = new Item("item1");
+            Item item2 = new Item("item2");
+            Item item3 = new Item("item3");
+            tracker.add(item1);
+            tracker.add(item2);
+            tracker.add(item3);
+            List<Item> expected = List.of(item1, item2, item3);
+            assertThat(tracker.findAll()).isEqualTo(expected);
+        }
+    }
+
+    @Test
+    public void whenReplaceItem() {
+        try (var tracker = new HbmTracker()) {
+            Item item1 = new Item("item1");
+            tracker.add(item1);
+            int id = item1.getId();
+            item1.setName("Edit name");
+            tracker.replace(id, item1);
+            assertThat(tracker.findById(id).getName()).isEqualTo("Edit name");
+        }
+    }
+
+    @Test
+    public void whenFindByName() {
+        try (var tracker = new HbmTracker()) {
+            Item item1 = new Item("item1");
+            Item item2 = new Item("item2");
+            Item item3 = new Item("item3");
+            tracker.add(item1);
+            tracker.add(item2);
+            tracker.add(item3);
+            List<Item> expected = List.of(item1, item2, item3);
+            List<Item> result = tracker.findByName("tem");
+            assertThat(result).contains(item1, item2, item3);
+        }
+    }
+
 }
